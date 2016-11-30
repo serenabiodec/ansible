@@ -1,0 +1,26 @@
+debian:
+    image: debian:jessie
+    script:
+      - apt-get update -y && apt-get install -y python python-dev python-pip git openssh-server
+      - pip install -r requirements.txt
+      - echo localhost > inventory
+      - ansible-playbook -i inventory test.yml --connection=local -vv
+ubuntu:
+    image: ubuntu:xenial
+    script:
+      - apt-get update -y && apt-get install -y python python-dev python-pip git openssh-server
+      - pip install -r requirements.txt
+      - echo localhost > inventory
+      - echo "$HOSTNAME" > /etc/mailname
+      - echo "$HOSTNAME" > /etc/hostname
+      - ansible-playbook -i inventory test.yml --connection=local -vv
+centos:
+    image: centos:7
+    script:
+      - yum update -y && yum install -y epel-release && yum update -y
+      - yum install -y python python-devel python-pip git openssh-server gcc
+      - pip install -r requirements.txt
+      - echo localhost > inventory
+      - echo "$HOSTNAME" > /etc/mailname
+      - echo "$HOSTNAME" > /etc/hostname
+      - ansible-playbook -i inventory test.yml --connection=local -vv

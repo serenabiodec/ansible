@@ -1,0 +1,16 @@
+ansible==2.1.0.0
+ecdsa==0.13
+Jinja2==2.8
+pycrypto==2.6.1
+
+# Required by:
+# Jinja2==2.8
+MarkupSafe==0.23
+
+# Required by:
+# ansible==2.1.0.0
+PyYAML==3.11
+
+# Required by:
+# ansible==2.1.0.0
+paramiko==1.16.0
